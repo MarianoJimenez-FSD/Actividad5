@@ -39,7 +39,7 @@
         <h1 class="fw-light">Listado de noticias</h1>
         <p class="lead text-muted">En esta cabecera tiene un botón para añadir una noticia al listado, y otro para borrar todas las noticias. En cada noticia tiene botones para editarla y para borrarla.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2" (click)="addBlogNew()">Añadir noticia</a>
+          <a href="#" class="btn btn-primary my-2" (click)="addBlogNewButtonHandler()">Añadir noticia</a>
           <span>&nbsp;</span>
           <a href="#" class="btn btn-secondary my-2" (click)="deleteAllBlogNews()">Borrar noticias</a>
         </p>
@@ -51,7 +51,7 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div *ngFor="let blogNew of blogNews | keyvalue" class="col">
-          <app-blog-new [blogNew]="blogNew.value"></app-blog-new>
+          <app-blog-new [blogNew]="blogNew.value" (editBlogNewEvent)="editBlogNewEventHandler($event)"></app-blog-new>
         </div>
       </div>
     </div>

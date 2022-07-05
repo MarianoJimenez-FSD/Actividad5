@@ -1,4 +1,4 @@
-import { Component, NgModule, Input, OnInit } from '@angular/core';
+import { Component, NgModule, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BlogNew } from 'src/app/interfaces/blog-new.interface';
 
 @Component({
@@ -17,8 +17,15 @@ export class BlogNewComponent implements OnInit {
     date: new Date('2022-07-02')
   };
 
+  @Output()
+  editBlogNewEvent: EventEmitter<BlogNew> = new EventEmitter<BlogNew>();
+
   constructor() { }
 
   ngOnInit(): void {    
-  }  
+  }
+
+  editButtonClickHandler() {
+    this.editBlogNewEvent.emit(this.blogNew);
+  }
 }

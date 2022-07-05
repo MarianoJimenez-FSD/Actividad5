@@ -31,8 +31,12 @@ export class AppComponent implements OnInit {
     this.blogNews = this.blogNewsService.getBlogNews();
   }
 
-  addBlogNew(): void {   
+  addBlogNewButtonHandler(): void {   
     this.blogNewFormComponent.show(true, this.emptyNew);  
+  }
+
+  editBlogNewEventHandler(blogNew: any) {
+    this.blogNewFormComponent.show(false, blogNew);
   }
 
   deleteAllBlogNews(): void {

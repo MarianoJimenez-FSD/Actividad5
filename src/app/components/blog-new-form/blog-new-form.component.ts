@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BlogNew } from 'src/app/interfaces/blog-new.interface';
@@ -18,7 +19,9 @@ export class BlogNewFormComponent implements OnInit {
     image: "",
     text: "",
     date: new Date()
-  };  
+  };
+
+  dateStr: string = formatDate(this.blogNew.date, 'yyyy-MM-dd', 'en-US');
 
   @Output()
   saveBlogNewFormEvent: EventEmitter<SaveBlogNewFormEventParams> = new EventEmitter<SaveBlogNewFormEventParams>();
@@ -50,13 +53,15 @@ export class BlogNewFormComponent implements OnInit {
   }
 
   show(isNew: boolean, blogNew: BlogNew): void {
-    this.new = isNew;
+    this.new     = isNew;
     this.blogNew = { ...blogNew };
+    this.dateStr = formatDate(this.blogNew.date, 'yyyy-MM-dd', 'en-US');
     this.modalService.open(this.blogNewForm, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.blogNew.date = new Date(this.dateStr);
       this.saveBlogNewFormEvent.emit({
-        new: this.new,
+        new:     this.new,
         blogNew: this.blogNew        
-      })
+      });
     }, (reason) => {
       //console.log(`Dismissed: ${reason}`);
     });

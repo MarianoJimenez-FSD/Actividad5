@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label for="inputDate">Fecha</label>
-                <input type="date" class="form-control" id="inputDate" placeholder="Fecha de publicación" [valueAsDate]="blogNew.date">
+                <input type="date" class="form-control" id="inputDate" placeholder="Fecha de publicación" [(ngModel)]="dateStr">
             </div>
             <div class="form-group">
                 <label for="textareaText">Texto</label>
