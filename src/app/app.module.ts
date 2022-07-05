@@ -7,12 +7,14 @@ import { BlogNewFormComponent } from './components/blog-new-form/blog-new-form.c
 import { FormsModule } from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmFormComponent } from './components/confirm-form/confirm-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogNewComponent,
-    BlogNewFormComponent
+    BlogNewFormComponent,
+    ConfirmFormComponent
   ],
   imports: [
     BrowserModule,

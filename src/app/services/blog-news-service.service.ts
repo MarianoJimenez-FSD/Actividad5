@@ -45,4 +45,8 @@ export class BlogNewsService {
       this.blogNews.set(blogNew.id, blogNew);
     }
   }
+
+  deleteAll() {
+    this.blogNews.clear();
+  }
 }

@@ -9,11 +9,14 @@ import { BlogNewsService } from './services/blog-news-service.service';
 })
 export class AppComponent implements OnInit {
 
+  readonly DELETE_ALL = 1;
+  readonly DELETE_ONE = 2;
+
   @ViewChild('blogNewFormComponent')
   blogNewFormComponent: any;
 
-  @ViewChild('content')
-  content: any;
+  @ViewChild('confirmFormComponent')
+  confirmFormComponent: any;
 
   emptyNew: BlogNew = {
     id: -1,
@@ -39,7 +42,13 @@ export class AppComponent implements OnInit {
     this.blogNewFormComponent.show(false, blogNew);
   }
 
-  deleteAllBlogNews(): void {
+  deleteAllButtonHandler(): void {
+    this.confirmFormComponent.show(
+      'Borrar noticias', 
+      'Se va a eliminar todas las noticias. ¿Desea continuar?', 
+      this.DELETE_ALL,
+      null
+    );
   }
 
   saveBlogNewFormEventHandler(saveBlogNewFormEventParams: any) {
@@ -48,6 +57,14 @@ export class AppComponent implements OnInit {
     }
     else {
       this.blogNewsService.updateBlogNew(saveBlogNewFormEventParams.blogNew);
+    }
+  }
+
+  confirmEventHandler(confirmEventParams: any) {    
+    switch(confirmEventParams.confirmAction) {
+      case this.DELETE_ALL:
+        this.blogNewsService.deleteAll();
+        break;
     }
   }
 
