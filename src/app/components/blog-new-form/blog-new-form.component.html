@@ -1,0 +1,30 @@
+<ng-template #blogNewFormTemplate let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modal-basic-title">{{ new ? 'Nueva noticia' : 'Modificación de noticia'}}</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputTitle">Título</label>
+                <input type="text" class="form-control" id="inputTitle" placeholder="Título de la noticia" [(ngModel)]="blogNew.title">
+            </div>
+            <div class="form-group">
+                <label for="inputImage">Imagen</label>
+                <input type="url" class="form-control" id="inputImage" placeholder="URL a la imagen de la noticia" [(ngModel)]="blogNew.image">
+            </div>
+            <div class="form-group">
+                <label for="inputDate">Fecha</label>
+                <input type="date" class="form-control" id="inputDate" placeholder="Fecha de publicación" [valueAsDate]="blogNew.date">
+            </div>
+            <div class="form-group">
+                <label for="textareaText">Texto</label>
+                <textarea class="form-control" id="textareaText" rows="3" placeholder="Contenido de la noticia" [(ngModel)]="blogNew.text"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="validateFields() ? modal.close('Save click') : {}">Guardar</button>
+        </div>
+    </div>
+</ng-template>

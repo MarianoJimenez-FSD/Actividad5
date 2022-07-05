@@ -39,10 +39,9 @@
         <h1 class="fw-light">Listado de noticias</h1>
         <p class="lead text-muted">En esta cabecera tiene un botón para añadir una noticia al listado, y otro para borrar todas las noticias. En cada noticia tiene botones para editarla y para borrarla.</p>
         <p>
-          <!--a href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#editUpdateNew">Añadir noticia</a-->
-          <a href="#" class="btn btn-primary my-2">Añadir noticia</a>
+          <a href="#" class="btn btn-primary my-2" (click)="addBlogNew()">Añadir noticia</a>
           <span>&nbsp;</span>
-          <a href="#" class="btn btn-secondary my-2">Borrar noticias</a>
+          <a href="#" class="btn btn-secondary my-2" (click)="deleteAllBlogNews()">Borrar noticias</a>
         </p>
       </div>
     </div>
@@ -57,6 +56,8 @@
       </div>
     </div>
   </div>
+
+  <app-blog-new-form #blogNewFormComponent (saveBlogNewFormEvent)="saveBlogNewFormEventHandler($event)"></app-blog-new-form>
 
 </main>
 

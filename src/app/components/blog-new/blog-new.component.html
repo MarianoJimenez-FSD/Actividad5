@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-sm btn-outline-secondary">Borrar</button>
         </div>
         <small class="text-muted">
-        <time [dateTime]="blogNew.date">
+        <time [dateTime]="blogNew.date | date: 'yyyy/MM/dd'">
             {{ blogNew.date | date: 'dd/MM/yyyy'}}
         </time>
         </small>

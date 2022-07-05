@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, NgModule, Input, OnInit } from '@angular/core';
 import { BlogNew } from 'src/app/interfaces/blog-new.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { BlogNew } from 'src/app/interfaces/blog-new.interface';
   templateUrl: './blog-new.component.html',
   styleUrls: ['./blog-new.component.css']
 })
-export class BlogNewComponent implements OnInit {
+export class BlogNewComponent implements OnInit {    
 
   @Input()
   blogNew: BlogNew = {
@@ -20,5 +20,5 @@ export class BlogNewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {    
-  }
+  }  
 }

@@ -38,5 +38,11 @@ export class BlogNewsService {
       blogNew
     );
     this.id++;
-  }  
+  }
+
+  updateBlogNew(blogNew: BlogNew) {
+    if (this.blogNews.has(blogNew.id)) {
+      this.blogNews.set(blogNew.id, blogNew);
+    }
+  }
 }
