@@ -20,6 +20,9 @@ export class BlogNewComponent implements OnInit {
   @Output()
   editBlogNewEvent: EventEmitter<BlogNew> = new EventEmitter<BlogNew>();
 
+  @Output()
+  deleteBlogNewEvent: EventEmitter<BlogNew> = new EventEmitter<BlogNew>();
+
   constructor() { }
 
   ngOnInit(): void {    
@@ -27,5 +30,9 @@ export class BlogNewComponent implements OnInit {
 
   editButtonClickHandler() {
     this.editBlogNewEvent.emit(this.blogNew);
+  }
+
+  deleteButtonClickHandler() {
+    this.deleteBlogNewEvent.emit(this.blogNew);
   }
 }

@@ -46,6 +46,12 @@ export class BlogNewsService {
     }
   }
 
+  deleteBlogNew(id: number) {
+    if (this.blogNews.has(id)) {
+      this.blogNews.delete(id);
+    }
+  }
+
   deleteAll() {
     this.blogNews.clear();
   }

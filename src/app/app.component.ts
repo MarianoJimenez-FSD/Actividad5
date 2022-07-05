@@ -51,6 +51,15 @@ export class AppComponent implements OnInit {
     );
   }
 
+  deleteBlogNewEventHandler(blogNew: any) {
+    this.confirmFormComponent.show(
+      'Borrar noticia', 
+      `Se va a eliminar la noticia ${blogNew.title}. ¿Desea continuar?`, 
+      this.DELETE_ONE,
+      blogNew.id
+    );
+  }
+
   saveBlogNewFormEventHandler(saveBlogNewFormEventParams: any) {
     if (saveBlogNewFormEventParams.new) {
       this.blogNewsService.addBlogNew(saveBlogNewFormEventParams.blogNew);
@@ -64,6 +73,9 @@ export class AppComponent implements OnInit {
     switch(confirmEventParams.confirmAction) {
       case this.DELETE_ALL:
         this.blogNewsService.deleteAll();
+        break;
+      case this.DELETE_ONE:
+        this.blogNewsService.deleteBlogNew(confirmEventParams.confirmActionParam);
         break;
     }
   }

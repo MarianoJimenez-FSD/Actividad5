@@ -51,7 +51,7 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div *ngFor="let blogNew of blogNews | keyvalue" class="col">
-          <app-blog-new [blogNew]="blogNew.value" (editBlogNewEvent)="editBlogNewEventHandler($event)"></app-blog-new>
+          <app-blog-new [blogNew]="blogNew.value" (editBlogNewEvent)="editBlogNewEventHandler($event)" (deleteBlogNewEvent)="deleteBlogNewEventHandler($event)"></app-blog-new>
         </div>
       </div>
     </div>
