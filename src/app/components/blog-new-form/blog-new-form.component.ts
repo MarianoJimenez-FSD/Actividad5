@@ -2,7 +2,6 @@ import { formatDate } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BlogNew } from 'src/app/interfaces/blog-new.interface';
-import { SaveBlogNewFormEventParams } from 'src/app/interfaces/save-blog-new-form-event-params';
 
 @Component({
   selector: 'app-blog-new-form',
@@ -22,9 +21,6 @@ export class BlogNewFormComponent implements OnInit {
   };
 
   dateStr: string = formatDate(this.blogNew.date, 'yyyy-MM-dd', 'en-US');
-
-  @Output()
-  saveBlogNewFormEvent: EventEmitter<SaveBlogNewFormEventParams> = new EventEmitter<SaveBlogNewFormEventParams>();
 
   @ViewChild('blogNewFormTemplate')
   blogNewForm: any;
@@ -52,18 +48,27 @@ export class BlogNewFormComponent implements OnInit {
     }
   }
 
-  show(isNew: boolean, blogNew: BlogNew): void {
+  show(isNew: boolean, blogNew: BlogNew): Promise<[boolean, BlogNew]> {
     this.new     = isNew;
     this.blogNew = { ...blogNew };
     this.dateStr = formatDate(this.blogNew.date, 'yyyy-MM-dd', 'en-US');
-    this.modalService.open(this.blogNewForm, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.blogNew.date = new Date(this.dateStr);
-      this.saveBlogNewFormEvent.emit({
-        new:     this.new,
-        blogNew: this.blogNew        
-      });
-    }, (reason) => {
-      //console.log(`Dismissed: ${reason}`);
-    });
+    return (
+      new Promise(
+        (resolve, reject) => {
+          try {
+            this.modalService.open(this.blogNewForm, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+              // Guardar
+              this.blogNew.date = new Date(this.dateStr);
+              resolve([true, this.blogNew]);
+            }, (reason) => {
+              // Cancelar
+              resolve([false, this.blogNew]);
+            });
+          } catch(error) {
+            reject(error);
+          }
+        }
+      )
+    );
   }
 }

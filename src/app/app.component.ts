@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BlogNew } from './interfaces/blog-new.interface';
-import { SaveBlogNewFormEventParams } from './interfaces/save-blog-new-form-event-params';
 import { BlogNewsService } from './services/blog-news-service.service';
 
 @Component({
@@ -36,11 +35,27 @@ export class AppComponent implements OnInit {
   }
 
   addBlogNewButtonHandler(): void {   
-    this.blogNewFormComponent.show(true, this.emptyNew);  
+    this.blogNewFormComponent.show(
+      true, 
+      this.emptyNew
+    )
+    .then( (response: [boolean, BlogNew]) => {
+      if (response[0]) {
+        this.blogNewsService.addBlogNew(response[1]);
+      }
+    });  
   }
 
   editBlogNewEventHandler(blogNew: any) {
-    this.blogNewFormComponent.show(false, blogNew);
+    this.blogNewFormComponent.show(
+      false, 
+      blogNew
+    )
+    .then( (response: [boolean, BlogNew]) => {
+      if (response[0]) {
+        this.blogNewsService.updateBlogNew(response[1]);
+      }
+    });  
   }
 
   deleteAllButtonHandler(): void {
@@ -52,7 +67,7 @@ export class AppComponent implements OnInit {
       if (confirm) {
         this.blogNewsService.deleteAll();
        }
-    })
+    });
   }
 
   deleteBlogNewEventHandler(blogNew: BlogNew) {
@@ -64,16 +79,7 @@ export class AppComponent implements OnInit {
       if (confirm) {
         this.blogNewsService.deleteBlogNew(blogNew.id);
        }
-    })
-  }
-
-  saveBlogNewFormEventHandler(saveBlogNewFormEventParams: SaveBlogNewFormEventParams) {
-    if (saveBlogNewFormEventParams.new) {
-      this.blogNewsService.addBlogNew(saveBlogNewFormEventParams.blogNew);
-    }
-    else {
-      this.blogNewsService.updateBlogNew(saveBlogNewFormEventParams.blogNew);
-    }
+    });
   }
 
 }
