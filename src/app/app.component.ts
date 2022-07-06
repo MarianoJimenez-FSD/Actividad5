@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ConfirmFormComponent } from './components/confirm-form/confirm-form.component';
 import { BlogNew } from './interfaces/blog-new.interface';
 import { BlogNewsService } from './services/blog-news-service.service';
 
@@ -8,9 +9,6 @@ import { BlogNewsService } from './services/blog-news-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  readonly DELETE_ALL = 1;
-  readonly DELETE_ONE = 2;
 
   @ViewChild('blogNewFormComponent')
   blogNewFormComponent: any;

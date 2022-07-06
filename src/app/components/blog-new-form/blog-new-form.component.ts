@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BlogNew } from 'src/app/interfaces/blog-new.interface';
 

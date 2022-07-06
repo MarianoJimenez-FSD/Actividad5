@@ -8,13 +8,17 @@ import { FormsModule } from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmFormComponent } from './components/confirm-form/confirm-form.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogNewComponent,
     BlogNewFormComponent,
-    ConfirmFormComponent
+    ConfirmFormComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
