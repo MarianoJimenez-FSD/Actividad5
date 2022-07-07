@@ -1,5 +1,5 @@
 <ng-template #blogNewFormTemplate let-modal>
-    <div class="modal-content">
+    <form #blogNewForm class="modal-content needs-validation" novalidate>
         <div class="modal-header">
             <h5 class="modal-title" id="modal-basic-title">{{ new ? 'Nueva noticia' : 'Modificación de noticia'}}</h5>
             <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -7,24 +7,36 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="inputTitle">Título</label>
-                <input type="text" class="form-control" id="inputTitle" placeholder="Título de la noticia" [(ngModel)]="blogNew.title">
+                <input type="text" class="form-control" id="inputTitle" placeholder="Título de la noticia" [(ngModel)]="blogNew.title" name="title" required>
+                <div class="invalid-feedback">
+                    Debe introducir el título de la noticia.
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputImage">Imagen</label>
-                <input type="url" class="form-control" id="inputImage" placeholder="URL a la imagen de la noticia" [(ngModel)]="blogNew.image">
+                <input type="url" class="form-control" id="inputImage" placeholder="URL a la imagen de la noticia" [(ngModel)]="blogNew.image" name="image"  required>
+                <div class="invalid-feedback">
+                    Debe introducir la URL a la imaten de la noticia.
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputDate">Fecha</label>
-                <input type="date" class="form-control" id="inputDate" placeholder="Fecha de publicación" [(ngModel)]="dateStr">
+                <input type="date" class="form-control" id="inputDate" placeholder="Fecha de publicación" [(ngModel)]="dateStr" name="date" required>
+                <div class="invalid-feedback">
+                    Debe introducir la fecha de la noticia.
+                </div>
             </div>
             <div class="form-group">
                 <label for="textareaText">Texto</label>
-                <textarea class="form-control" id="textareaText" rows="3" placeholder="Contenido de la noticia" [(ngModel)]="blogNew.text"></textarea>
+                <textarea class="form-control" id="textareaText" rows="3" placeholder="Contenido de la noticia" [(ngModel)]="blogNew.text" name="text" required></textarea>
+                <div class="invalid-feedback">
+                    Debe introducir el texto de la noticia.
+                </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="validateFields() ? modal.close('Save click') : {}">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="blogNewForm.checkValidity() ? modal.close('Save click') : blogNewForm.classList.add('was-validated')">Guardar</button>
         </div>
-    </div>
+    </form>
 </ng-template>

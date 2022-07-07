@@ -23,29 +23,11 @@ export class BlogNewFormComponent implements OnInit {
   dateStr: string = formatDate(this.blogNew.date, 'yyyy-MM-dd', 'en-US');
 
   @ViewChild('blogNewFormTemplate')
-  blogNewForm: any;
+  blogNewFormTemplate: any;
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  }
-
-  validateFields(): boolean {
-    if (this.blogNew.title === '') {
-      alert('Debe introducir el título.');
-      return false;
-    }
-    else if (this.blogNew.image === '') {
-      alert('Debe introducir una imagen.');
-      return false;
-    }
-    else if (this.blogNew.text === '') {
-      alert('Debe introducir el texto de la noticia.')
-      return false;
-    }
-    else {
-      return true;      
-    }
   }
 
   show(isNew: boolean, blogNew: BlogNew): Promise<[boolean, BlogNew]> {
@@ -56,7 +38,7 @@ export class BlogNewFormComponent implements OnInit {
       new Promise(
         (resolve, reject) => {
           try {
-            this.modalService.open(this.blogNewForm, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+            this.modalService.open(this.blogNewFormTemplate, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
               // Guardar
               this.blogNew.date = new Date(this.dateStr);
               resolve([true, this.blogNew]);
