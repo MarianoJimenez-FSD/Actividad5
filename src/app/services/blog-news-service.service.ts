@@ -6,8 +6,8 @@ import { BlogNew } from '../interfaces/blog-new.interface';
 })
 export class BlogNewsService {
 
-  blogNews: Map<number, BlogNew> = new Map<number, BlogNew>();
-  id: number = 1;
+  private blogNews: Map<number, BlogNew> = new Map<number, BlogNew>();
+  private id: number = 1;
   
   constructor() {
     this.addBlogNew({
